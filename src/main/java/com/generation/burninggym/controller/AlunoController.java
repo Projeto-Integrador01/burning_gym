@@ -57,17 +57,16 @@ public class AlunoController {
 	
 	@PostMapping
 	public ResponseEntity<Aluno> post(@Valid @RequestBody Aluno aluno){
-		if (professorRepository.existsById(aluno.getId()))
-			return ResponseEntity.status(HttpStatus.CREATED).body(alunoRepository.save(aluno));
-		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Aula não existe!", null);
+			return ResponseEntity.status(HttpStatus.CREATED)
+					.body(alunoRepository.save(aluno));
 	}
 	
 	@PutMapping
 	public ResponseEntity<Aluno> put(@Valid @RequestBody Aluno aluno) {
 		if (alunoRepository.existsById(aluno.getId())) {
-			if (professorRepository.existsById(aluno.getId()))
+			//if (professorRepository.existsById(aluno.getId()))
 				return ResponseEntity.status(HttpStatus.OK).body(alunoRepository.save(aluno));
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Aula não existe!", null);
+			//throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Aula não existe!", null);
 
 		} return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	}

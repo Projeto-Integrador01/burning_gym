@@ -41,14 +41,14 @@ public class AulaController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Aluno não encontrado"));
     }
 
-    @GetMapping
-    public ResponseEntity <List<Aula>> findAllByTipoContainingIgnoreCase(@RequestParam String tipoAula) {
-        return ResponseEntity.ok(aulaRepository.findAllByTipoContainingIgnoreCase(tipoAula));
+    @GetMapping("/tipo/{tipoAula}")
+    public ResponseEntity <List<Aula>> findAllByTipoContainingIgnoreCase(@PathVariable String tipoAula) {
+        return ResponseEntity.ok(aulaRepository.findAllByTipoAulaContainingIgnoreCase(tipoAula));
     }
 
     @PostMapping
     public ResponseEntity<Aula> post (@Valid @RequestBody Aula aula) {
-        if (aulaRepository.existsById(aula.getProfessor().getId()))
+        if (professorRepository.existsById(aula.getProfessor().getId()))
             return ResponseEntity.status(HttpStatus.CREATED).body(aulaRepository.save(aula));
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Professor não existe", null);
     }

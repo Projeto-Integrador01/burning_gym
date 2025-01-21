@@ -8,5 +8,5 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface AulaRepository extends JpaRepository<Aula, Long> {
-    public List<Aula> findAllByTipoContainingIgnoreCase (@Param("tipoAula") String tipoAula);
+    public List<Aula> findAllByTipoAulaContainingIgnoreCase (@Param("tipoAula") String tipoAula);
 }

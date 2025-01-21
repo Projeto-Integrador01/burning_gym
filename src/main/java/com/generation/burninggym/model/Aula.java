@@ -19,6 +19,7 @@ public class Aula {
 
     @NotBlank(message = "O tipo da Aula é obrigatório")
     @Size(min = 3, max = 100)
+    @Column(name = "tipo_aula")
     private String tipoAula;
 
     @NotBlank (message = "A descrição da aula é obrigatória")
@@ -29,6 +30,7 @@ public class Aula {
     private LocalDate data;
 
     @NotNull (message = "A duração da aula é obrigatória")
+    @Column(name = "duracao_aula") // funciona como se fosse um alter table no banco de dados 
     private LocalTime duracaoAula;
 
     @ManyToOne
