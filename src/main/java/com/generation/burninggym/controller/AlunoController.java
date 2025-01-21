@@ -3,6 +3,7 @@ package com.generation.burninggym.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.generation.burninggym.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,9 @@ public class AlunoController {
 	
 	@Autowired
 	private AulaRepository aulaRepository;
-	
+    @Autowired
+    private ProfessorRepository professorRepository;
+
 	@GetMapping
 	public ResponseEntity<List<Aluno>> getAll(){
 		return ResponseEntity.ok(alunoRepository.findAll());
@@ -54,24 +57,19 @@ public class AlunoController {
 	
 	@PostMapping
 	public ResponseEntity<Aluno> post(@Valid @RequestBody Aluno aluno){
-		if (aulaRepository.existsById( aluno.getAula().getId()))
-		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(alunoRepository.save(aluno));
-		
+		if (professorRepository.existsById(aluno.getId()))
+			return ResponseEntity.status(HttpStatus.CREATED).body(alunoRepository.save(aluno));
 		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Aula não existe!", null);
 	}
 	
 	@PutMapping
 	public ResponseEntity<Aluno> put(@Valid @RequestBody Aluno aluno) {
 		if (alunoRepository.existsById(aluno.getId())) {
-			if (aulaRepository.existsById(aluno.getAula().getId()))
-				return ResponseEntity.status(HttpStatus.OK)
-						.body(alunoRepository.save(aluno));
-			
+			if (professorRepository.existsById(aluno.getId()))
+				return ResponseEntity.status(HttpStatus.OK).body(alunoRepository.save(aluno));
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Aula não existe!", null);
-		}
-		
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+
+		} return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)

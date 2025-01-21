@@ -53,7 +53,7 @@ public class Aluno {
 	
 	@OneToMany (fetch = FetchType.LAZY, mappedBy = "aluno", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("aluno")
-	private Aula aula;
+	private List<Aula> aula;
 
 	public Long getId() {
 		return id;
@@ -119,12 +119,12 @@ public class Aluno {
 		this.objetivo = objetivo;
 	}
 
-	public Aula getAula() {
+
+	public List<Aula> getAula() {
 		return aula;
 	}
 
-	public void setAula(Aula aula) {
+	public void setAula(List<Aula> aula) {
 		this.aula = aula;
 	}
-
 }
