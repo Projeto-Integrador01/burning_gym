@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -22,9 +21,14 @@ public class Aula {
     @Size(min = 3, max = 100)
     private String tipoAula;
 
-    @NotNull
+    @NotBlank (message = "A descrição da aula é obrigatória")
+    @Size(min = 3, max = 100)
+    private String descricao;
+
+    @NotNull (message = "A data da aula é obrigatória")
     private LocalDate data;
-    @NotNull
+
+    @NotNull (message = "A duração da aula é obrigatória")
     private LocalTime duracaoAula;
 
     @ManyToOne
@@ -74,5 +78,21 @@ public class Aula {
 
     public void setProfessor(Professor professor) {
         this.professor = professor;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }

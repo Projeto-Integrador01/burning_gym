@@ -51,9 +51,9 @@ public class Aluno {
 	@Size(min = 3, max = 5000, message = "O objetivo deve ter no mínimo 3 e no máximo 5000 caracteres")
 	private String objetivo;
 	
-	@OneToMany (fetch = FetchType.LAZY, mappedBy = "aula", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties("aula")
-	private List<Aluno> aluno;
+	@OneToMany (fetch = FetchType.LAZY, mappedBy = "aluno", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("aluno")
+	private List<Aula> aula;
 
 	public Long getId() {
 		return id;
@@ -119,12 +119,12 @@ public class Aluno {
 		this.objetivo = objetivo;
 	}
 
-	public List<Aluno> getAluno() {
-		return aluno;
+	public List<Aula> getAula() {
+		return aula;
 	}
 
-	public void setAluno(List<Aluno> aluno) {
-		this.aluno = aluno;
+	public void setAula(List<Aula> aula) {
+		this.aula = aula;
 	}
 	
 	
