@@ -119,7 +119,6 @@ public class Aluno {
 		this.objetivo = objetivo;
 	}
 
-
 	public List<Aula> getAula() {
 		return aula;
 	}
@@ -127,4 +126,6 @@ public class Aluno {
 	public void setAula(List<Aula> aula) {
 		this.aula = aula;
 	}
+	
+	
 }
