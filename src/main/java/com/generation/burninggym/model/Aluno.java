@@ -118,6 +118,14 @@ public class Aluno {
 	public void setObjetivo(String objetivo) {
 		this.objetivo = objetivo;
 	}
+
+	public List<Aluno> getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(List<Aluno> aluno) {
+		this.aluno = aluno;
+	}
 	
 	
 }
