@@ -31,6 +31,10 @@ public class Aula {
     @JsonIgnoreProperties("aula")
     private Professor professor;
 
+    @ManyToOne
+    @JsonIgnoreProperties("aula")
+    private Aluno aluno;
+
 
     public Long getId() {
         return id;
