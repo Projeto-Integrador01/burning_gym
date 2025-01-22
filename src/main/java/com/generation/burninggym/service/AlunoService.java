@@ -1,5 +1,8 @@
 package com.generation.burninggym.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +23,7 @@ public class AlunoService {
 		if (alunoRepository.existsById(aluno.getId())) {
 			var peso = aluno.getPeso();
 			var altura = aluno.getAltura();
-			var imc = (peso.divide(altura.multiply(altura)));
+			BigDecimal imc = peso.divide(altura.multiply(altura), 2, RoundingMode.HALF_UP);
 			aluno.setImc(imc); 
 			alunoRepository.save(aluno);
 		}
