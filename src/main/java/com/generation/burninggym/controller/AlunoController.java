@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.generation.burninggym.repository.ProfessorRepository;
+import com.generation.burninggym.service.AlunoService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,8 +37,12 @@ public class AlunoController {
 	
 	@Autowired
 	private AulaRepository aulaRepository;
+	
     @Autowired
     private ProfessorRepository professorRepository;
+    
+    @Autowired
+    private AlunoService alunoService;
 
 	@GetMapping
 	public ResponseEntity<List<Aluno>> getAll(){
@@ -57,8 +63,10 @@ public class AlunoController {
 	
 	@PostMapping
 	public ResponseEntity<Aluno> post(@Valid @RequestBody Aluno aluno){
-			return ResponseEntity.status(HttpStatus.CREATED)
-					.body(alunoRepository.save(aluno));
+				Aluno alunoi = alunoService.criarAluno(aluno);
+				alunoService.calculoImc(alunoi);
+				return ResponseEntity.status(HttpStatus.CREATED)
+						.body(alunoRepository.save(alunoi));
 	}
 	
 	@PutMapping

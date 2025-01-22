@@ -10,5 +10,4 @@ import com.generation.burninggym.model.Aluno;
 public interface AlunoRepository extends JpaRepository<Aluno, Long>{
 	
 	public List <Aluno> findAllByNomeContainingIgnoreCase(@Param("nome") String nome);
-
 }

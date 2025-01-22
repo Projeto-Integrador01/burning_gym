@@ -51,6 +51,8 @@ public class Aluno {
 	@Size(min = 3, max = 5000, message = "O objetivo deve ter no mínimo 3 e no máximo 5000 caracteres")
 	private String objetivo;
 	
+	private BigDecimal imc;
+	
 	@OneToMany (fetch = FetchType.LAZY, mappedBy = "aluno", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("aluno")
 	private List<Aula> aula;
@@ -126,6 +128,13 @@ public class Aluno {
 	public void setAula(List<Aula> aula) {
 		this.aula = aula;
 	}
-	
+
+	public BigDecimal getImc() {
+		return imc;
+	}
+
+	public void setImc(BigDecimal imc) {
+		this.imc = imc;
+	}
 	
 }
