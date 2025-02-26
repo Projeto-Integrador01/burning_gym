@@ -27,11 +27,11 @@ public class Aula {
     private String descricao;
 
     @NotNull (message = "A data da aula é obrigatória")
-    private LocalDate data;
+    private String data;
 
     @NotNull (message = "A duração da aula é obrigatória")
     @Column(name = "duracao_aula") // funciona como se fosse um alter table no banco de dados 
-    private LocalTime duracaoAula;
+    private String duracaoAula;
 
     @ManyToOne
     @JsonIgnoreProperties("aula")
@@ -57,24 +57,24 @@ public class Aula {
     public void setTipoAula(String tipoAula) {
         this.tipoAula = tipoAula;
     }
+    
+    public String getData() {
+		return data;
+	}
 
-    public LocalDate getData() {
-        return data;
-    }
+	public void setData(String data) {
+		this.data = data;
+	}
 
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
+	public String getDuracaoAula() {
+		return duracaoAula;
+	}
 
-    public LocalTime getDuracaoAula() {
-        return duracaoAula;
-    }
+	public void setDuracaoAula(String duracaoAula) {
+		this.duracaoAula = duracaoAula;
+	}
 
-    public void setDuracaoAula(LocalTime duracaoAula) {
-        this.duracaoAula = duracaoAula;
-    }
-
-    public Professor getProfessor() {
+	public Professor getProfessor() {
         return professor;
     }
 
